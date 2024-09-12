@@ -11,7 +11,16 @@ class ViewContoller extends Controller
     public function show() {
         $response = Http::get("https://api.jikan.moe/v4/seasons/now");
         $animeList = $response->json()["data"];
-        dump($animeList);
-        return view("welcome", ["animeList" => $animeList]);
-    }
+        // dump($animeList);
+
+        $recommend = Http::get("https://api.jikan.moe/v4/recommendations/anime");
+        $recommendAnime = $recommend->json()["data"];
+        dump($recommendAnime);
+        return view("welcome",  [
+            "recommendAnime" => $recommendAnime,
+            "animeList" => $animeList
+        ]
+    );
+}
+
 }
