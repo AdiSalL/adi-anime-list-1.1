@@ -15,7 +15,6 @@ class ViewContoller extends Controller
 
         $recommend = Http::get("https://api.jikan.moe/v4/recommendations/anime");
         $recommendAnime = $recommend->json()["data"];
-        dump($recommendAnime);
         return view("welcome",  [
             "recommendAnime" => $recommendAnime,
             "animeList" => $animeList
